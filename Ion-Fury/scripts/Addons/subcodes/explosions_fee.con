@@ -1,0 +1,589 @@
+
+				//Normal CO2 Explosion
+				
+				ife se_pal 0
+				{
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 96
+					mul ty_cop 96
+					espawn A_SMOKE2
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta[].z temp
+					sub temp 4096
+					seta[RETURN].z temp
+					
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 255
+					mul ty_cop 255
+					espawn A_SMOKE2
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta .z temp
+					sub temp 4096
+					seta[RETURN].z temp
+
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop tx_sprite
+					mul ty_cop ty_sprite
+					add tx_cop 16
+					add ty_cop 16
+					
+					espawn A_EXPLOSION
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta .z temp
+					add temp 0
+					setav[RETURN].smoke_offset 2048
+					seta[RETURN].z temp
+					hitradius 32 7 8 9 10
+					
+				}
+				//Classic Explosion
+				else ife se_pal 1
+				{					
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop tx_sprite
+					mul ty_cop ty_sprite
+					add tx_cop 16
+					add ty_cop 16
+					
+					espawn A_EXPLOSION
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta .z temp
+					add temp 0
+					setav[RETURN].smoke_offset 2048
+					seta[RETURN].z temp
+					hitradius 32 7 8 9 10
+					
+				}
+				//Shrapnel Explosion
+				else ife se_pal 2
+				{
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop tx_sprite
+					mul ty_cop ty_sprite
+					add tx_cop 16
+					add ty_cop 16
+					
+					espawn A_EXPLOSION
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta .z temp
+					add temp 0
+					setav[RETURN].smoke_offset 2048
+					seta[RETURN].z temp
+					hitradius 32 7 8 9 10
+					rand temp5 10
+					add temp5 10
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						ezshoot temp6 P_BOMBETTE
+						seta[RETURN].htowner sprite.htowner
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xrepeat tx_sprite
+						seta[RETURN].yrepeat ty_sprite
+					}
+					
+					
+				}
+				
+				//Rock and Dust Explosion
+				else ife se_pal 3
+				{
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop tx_sprite
+					mul ty_cop ty_sprite
+					add tx_cop 16
+					add ty_cop 16
+					
+					espawn A_EXPLOSION
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta .z temp
+					add temp 0
+					setav[RETURN].smoke_offset 2048
+					seta[RETURN].z temp
+					seta[RETURN].pal 3
+					
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 96
+					mul ty_cop 96
+					espawn A_SMOKE2
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					seta[RETURN].pal 3
+					geta[].z temp
+					sub temp 4096
+					seta[RETURN].z temp
+					
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 255
+					mul ty_cop 255
+					espawn A_SMOKE2
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					seta[RETURN].pal 3
+					geta .z temp
+					sub temp 4096
+					seta[RETURN].z temp
+					
+					rand temp5 tx_sprite
+					add temp5 ty_sprite
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						rand temp 512
+						add temp 128
+						espawn A_GENERIC_DEBRIS
+						setav[RETURN].debris_type DEBRIS_ROCK
+						rand temp2 2047
+						seta[RETURN].ang temp2
+						seta[RETURN].zvel temp6
+						seta[RETURN].xvel temp
+						seta[RETURN].xrepeat 64
+						seta[RETURN].yrepeat 64
+					}
+					
+				}
+				//Dark Smoke Explosion
+				else ife se_pal 4
+				{
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 96
+					mul ty_cop 96
+					add ty_cop 16
+					add tx_cop 16
+					espawn A_SMOKE2
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta[].z temp
+					sub temp 4096
+					seta[RETURN].z temp
+					seta[RETURN].pal 77
+					
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 255
+					mul ty_cop 255
+					add ty_cop 16
+					add tx_cop 16
+					espawn A_SMOKE2
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta .z temp
+					sub temp 4096
+					seta[RETURN].z temp
+					seta[RETURN].pal 77
+
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop tx_sprite
+					mul ty_cop ty_sprite
+					add tx_cop 16
+					add ty_cop 16
+					
+					espawn A_EXPLOSION
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta .z temp
+					add temp 0
+					setav[RETURN].smoke_offset 2048
+					seta[RETURN].z temp
+					seta[RETURN].pal 77
+					
+				}
+				//Toxic Smoke Explosion
+				else ife se_pal 5
+				{
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 128
+					mul ty_cop 128
+					espawn A_SMOKE2
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					seta[RETURN].pal 68
+					seta[RETURN].blend 130
+					geta[].z temp
+					sub temp 4096
+					seta[RETURN].z temp
+					
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 255
+					mul ty_cop 255
+					espawn A_SMOKE2
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					seta[RETURN].pal 68
+					seta[RETURN].blend 130
+					geta .z temp
+					sub temp 4096
+					seta[RETURN].z temp
+
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop tx_sprite
+					mul ty_cop ty_sprite
+					espawn A_EXPLOSION
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta .z temp
+					add temp 0
+					setav[RETURN].smoke_offset 2048
+					seta[RETURN].z temp
+					seta[RETURN].pal 68
+					
+					rand temp5 10
+					add temp5 10
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						ezshoot temp6 P_ACIDYSPIT
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xrepeat tx_sprite
+						seta[RETURN].yrepeat ty_sprite
+					}
+				}
+				
+				//Water Explosion
+				else ife se_pal 6
+				{
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 512
+					mul ty_cop 512
+					espawn A_GENERIC_PARTICLE
+					setav[RETURN].particle_force_pal 6
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					seta[RETURN].pal 48
+					seta[RETURN].picnum P_BLOOD
+					geta .z temp
+					add temp 0
+					setav[RETURN].smoke_offset 2048
+					seta[RETURN].z temp
+					
+					rand temp5 50
+					add temp5 50
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						ezshoot temp6 P_BLOOD
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xrepeat tx_sprite
+						seta[RETURN].yrepeat ty_sprite
+						setav[RETURN].particle_force_pal 6
+						seta[RETURN].cstat 32768
+
+						rand temp6 512
+						add temp6 128
+						rand temp2 512
+						add temp2 128
+						espawn A_RAINSPRITE
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xvel temp2
+						seta[RETURN].zvel temp6
+						seta[RETURN].xrepeat 64
+						seta[RETURN].yrepeat 64
+						seta[RETURN].pal 6
+						seta[RETURN].cstat 32768
+						
+					}
+					
+					espawn A_GENERIC_PARTICLE
+					seta[RETURN].xrepeat 125
+					setav[RETURN].particle_force_pal 6
+				}
+				
+				//Electric Explosion
+				else ife se_pal 7
+				{
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 128
+					mul ty_cop 128
+					espawn A_GENERIC_PARTICLE
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					setav[RETURN].particle_force_pal 6
+					seta[RETURN].picnum A_LIGHTNINGBALL
+					
+					rand temp5 10
+					add temp5 10
+					for itervar range temp5
+					{
+						espawn A_LIGHTNINGBALL
+						set temp5 tilesizy[sprite[].picnum]
+						shiftl temp5 2
+						mul temp5 sprite[].yrepeat
+						shiftr temp5 2
+						geta[].z temp
+						sub temp temp5
+						seta[RETURN].z temp
+						seta[].owner THISACTOR
+						hitradius 32 7 8 9 10
+					}
+					
+					rand temp5 10
+					add temp5 10
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						ezshoot temp6 P_SHOCKER
+						seta[RETURN].htowner sprite.htowner
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xrepeat tx_sprite
+						seta[RETURN].yrepeat ty_sprite
+					}
+				}
+				
+				//Gibs Explosion
+				else ife se_pal 8
+				{
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 32
+					mul ty_cop 32
+					espawn A_EXPLOSION
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					geta .z temp
+					add temp 0
+					setav[RETURN].smoke_offset 2048
+					seta[RETURN].z temp
+					seta[RETURN].pal 0
+					
+					rand temp5 10
+					add temp5 10
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						ezshoot temp6 P_GIB_MEAT
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xrepeat tx_sprite
+						seta[RETURN].yrepeat ty_sprite
+						seta[RETURN].pal 0
+						seta[RETURN].cstat 32768
+						seta[RETURN].blend 15
+					}
+					
+					rand temp5 10
+					add temp5 10
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						ezshoot temp6 P_GIB_CHUNK1
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xrepeat tx_sprite
+						seta[RETURN].yrepeat ty_sprite
+						seta[RETURN].pal 0
+						seta[RETURN].cstat 32768
+						seta[RETURN].blend 15
+					}
+					
+					rand temp5 10
+					add temp5 10
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						ezshoot temp6 P_GIB_INTESTINE
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xrepeat tx_sprite
+						seta[RETURN].yrepeat ty_sprite
+						seta[RETURN].pal 0
+						seta[RETURN].cstat 32768
+						seta[RETURN].blend 15
+					}
+					
+					rand temp5 10
+					add temp5 10
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						ezshoot temp6 P_GIB_SPINE
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xrepeat tx_sprite
+						seta[RETURN].yrepeat ty_sprite
+						seta[RETURN].pal 0
+						seta[RETURN].cstat 32768
+						seta[RETURN].blend 15
+					}
+				}
+				
+				//Blood Explosion
+				else ife se_pal 9
+				{
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 32
+					mul ty_cop 32
+					espawn A_EXPLOSION
+					seta[RETURN].xrepeat tx_cop
+					seta[RETURN].yrepeat ty_cop
+					seta[RETURN].cstat 32768
+					seta[RETURN].pal 59
+					geta .z temp
+					add temp 0
+					setav[RETURN].smoke_offset 2048
+					seta[RETURN].z temp
+					
+					rand temp5 32
+					add temp5 32
+					for itervar range temp5
+					{
+						rand temp6 1024
+						add temp6 128
+						rand temp2 1024
+						add temp2 128
+						ezshoot temp6 P_BLOOD
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xvel temp2
+						seta[RETURN].xrepeat tx_sprite
+						seta[RETURN].yrepeat ty_sprite
+						seta[RETURN].pal 59
+						seta[RETURN].cstat 32768
+						seta[RETURN].blend 15
+					}
+					rand temp5 10
+					add temp5 10
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						rand temp2 512
+						add temp2 128
+						espawn A_DROP
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xvel temp2
+						seta[RETURN].zvel temp6
+						seta[RETURN].xrepeat 64
+						seta[RETURN].yrepeat 64
+						seta[RETURN].pal 59
+						seta[RETURN].cstat 32768
+						seta[RETURN].blend 15
+					}
+				}
+				
+				//Fire Explosion
+				else ifge se_pal 10
+				{
+					set tx_cop tx_sprite
+					set ty_cop ty_sprite
+					div tx_cop 64
+					div ty_cop 64
+					mul tx_cop 45
+					mul ty_cop 45
+					espawn A_EXPLOSION
+					seta[RETURN].xrepeat tx_sprite
+					seta[RETURN].yrepeat ty_sprite
+					seta[RETURN].cstat 32768
+					seta[RETURN].pal 10
+					geta .z temp
+					add temp 0
+					setav[RETURN].smoke_offset 2048
+					seta[RETURN].z temp
+					
+					rand temp5 10
+					add temp5 10
+					for itervar range temp5
+					{
+						rand temp6 512
+						add temp6 128
+						ezshoot temp6 P_NAPALM_BALL
+						rand temp7 2047
+						seta[RETURN].ang temp7
+						seta[RETURN].xrepeat tx_sprite
+						seta[RETURN].yrepeat ty_sprite
+						seta[RETURN].pal 10
+						seta[RETURN].cstat 32768
+						seta[RETURN].blend 15
+					}
+				}
+
+				

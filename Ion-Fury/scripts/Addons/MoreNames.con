@@ -1,0 +1,25 @@
+/*
+
+FAN-MADE SCRIPT FOR ION FURY
+
+By Jordan MAFIODO aka Mamijomale
+
+----
+
+Here is the place for the names of the new entities which will require scripts
+to work as intended. Let's stick to the dev's structure, eh?
+
+The defined entities will be classed by category with a comment to make
+it more clear. Some part may be empty if there were no reason to add something
+to serve the fan mission.
+
+*/
+
+// New Effect Tiles
+define A_FIRE_EXT_LIKE_EFFECT	90
+define AN_INVERTER 91
+// New Breakable Props
+
+// New NPCs
+
+// New Weapons

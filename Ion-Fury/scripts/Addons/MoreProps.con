@@ -1,0 +1,134 @@
+/*
+
+FAN-MADE SCRIPT FOR ION FURY
+
+By Jordan MAFIODO aka Mamijomale
+
+----
+
+Here is the place for the new props and their properties.
+
+The rule of the game is simple : adding to the switch the new object NAME located in
+MoreNames.con and applying the necessary changes when the entity is loaded
+(forced PALETTE or SIZE for example)
+
+Then, doing separated functions for the special effects about the object.
+
+*/
+
+/*
+
+//Function to initiate the object such as done in props.con
+appendevent EVENT_SPAWN
+    switch sprite[THISACTOR].picnum
+	endswitch
+endevent
+
+//Custom accurate properties about this new prop
+*/
+
+
+
+/*
+Revert the signal received from the hitag channel and send it to the lotag channel. Perfect to disable something activated on demand
+Extra can be used as a delay for timed relay
+Owner for flags :
+	[1] NoOff : ignore disable signals
+	[2] NoOn : ignore enable signals
+	[4] Don't revert : Keep the signal as it has been received. Handy to use this tile as a simple timer.
+	[8] Start on Disabled mod
+	
+	
+Note : This tile can obviously be replaced with a TouchPlate+ but such a tile being complex to understand and use,
+this one will help to do easy effects. 
+*/
+
+defstate switch_desactivate
+    operateactivators se_lotag THISACTOR
+    operatemasterswitches se_lotag
+    operaterespawns se_lotag
+    setarray preloadactivations[se_lotag] 0
+ends
+
+
+eventloadactor AN_INVERTER
+	geta[].hitag se_hitag
+	geta[].lotag se_lotag
+	geta[].extra se_extra
+	geta[].owner tp_owner
+	
+	set se_pal 0
+	set se_shade 0
+
+	seta[].hitag 0
+	seta[].lotag 0
+	seta[].extra -1
+	seta[].owner 0
+	
+	ifl tp_owner 0 set tp_owner 0
+enda
+
+
+useractor notenemy AN_INVERTER
+	ife se_shade 0
+	{
+		ifand tp_owner 8
+			ife activateshit[se_hitag] 0 
+				set se_shade 1
+		else
+			ife activateshit[se_hitag] 1 
+				set se_shade 1	
+	}
+	else ife se_shade 1
+	{
+		
+		ife activateshit[se_hitag] 0 
+		{
+			ifand tp_owner 2
+			{
+				nullop
+			}
+			else
+			{
+				ifg se_pal se_extra
+				{
+					set se_pal 0
+					set se_shade 0
+					ifand tp_owner 4
+						state switch_activate
+					else
+						state switch_desactivate
+					redefinequote 6 ^SHAZAM TOMATE
+					//setarray activateshit[se_hitag] 0
+					
+				}
+				else
+					add se_pal 1
+			}
+		}
+
+		else ife activateshit[se_hitag] 1 
+		{
+			ifand tp_owner 1
+			{
+				nullop
+			}
+			else
+			{
+				ifg se_pal se_extra
+				{
+					set se_pal 0
+					set se_shade 0
+					ifand tp_owner 4
+						state switch_desactivate
+					else
+						state switch_activate
+					redefinequote 6 ^SHAZAM CAROTTE
+				}
+				else
+					add se_pal 1
+			}
+		}
+	}
+	
+enda
