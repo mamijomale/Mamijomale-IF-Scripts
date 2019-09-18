@@ -1,0 +1,86 @@
+include palette.def
+include textures.def
+include voxels.def
+include menu.def
+
+basepalette 0 { raw { file "/palette/3dr_480.raw" } }
+tilefromtexture 2488 { file /3dr_480.png }
+basepalette 0 { raw { file "/palette/basepalette_000.raw" } }
+
+// crosshair
+2dcol 5 48 10 255
+2dcol 21 48 10 255
+
+// paralaxed skies
+
+multipsky 6100
+{
+    lognumtiles 1
+    yscale 38400
+    yoffset 256
+    horizfrac 65536
+}
+multipsky 6101
+{
+    lognumtiles 1
+    yscale 38400
+    yoffset 256
+    horizfrac 65536
+}
+multipsky 6130
+{
+    lognumtiles 3
+    yscale 32768
+    horizfrac 65536
+}
+multipsky 6143
+{
+    lognumtiles 3
+    yscale 32768
+    horizfrac 65536
+}
+
+// skyboxes
+
+skybox {
+   tile 6100 pal 0 artquality
+   top   "skyboxes/6100_top.png"
+   down  "skyboxes/6100_bottom.png"
+   front "skyboxes/6100_north.png"
+   right "skyboxes/6100_east.png"
+   back  "skyboxes/6100_north.png"
+   left  "skyboxes/6100_east.png"
+}
+skybox {
+   tile 6100 pal 7 artquality
+   top   "skyboxes/6100_top_pal7.png"
+   down  "skyboxes/6100_bottom_pal7.png"
+   front "skyboxes/6100_north_pal7.png"
+   right "skyboxes/6100_east_pal7.png"
+   back  "skyboxes/6100_north_pal7.png"
+   left  "skyboxes/6100_east_pal7.png"
+}
+
+skybox {
+   tile 6101 pal 0 artquality
+   top   "skyboxes/6101_top.png"
+   down  "skyboxes/6101_bottom.png"
+   front "skyboxes/6101_north.png"
+   right "skyboxes/6101_east.png"
+   back  "skyboxes/6101_north.png"
+   left  "skyboxes/6101_east.png"
+}
+skybox {
+   tile 6101 pal 7 artquality
+   top   "skyboxes/6101_top_pal7.png"
+   down  "skyboxes/6101_bottom_pal7.png"
+   front "skyboxes/6101_north_pal7.png"
+   right "skyboxes/6101_east_pal7.png"
+   back  "skyboxes/6101_north_pal7.png"
+   left  "skyboxes/6101_east_pal7.png"
+}
+
+// misc stuff
+
+animsounds logo { 1 1001 }
+cutscene LOGO.ANM { delay 4 }
